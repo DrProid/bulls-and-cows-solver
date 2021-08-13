@@ -1,0 +1,41 @@
+body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 40px 10px 10px
+}
+
+/* body,
+h1 {
+  text-align: center
+} */
+
+input, select {
+  box-sizing: border-box;
+  line-height: 30px;
+  padding: 0 4px;
+  margin: 10px;
+}
+
+button, input, input[type=button], select {
+  position: relative;
+  z-index: 1000
+}
+
+#guess-container {
+  margin-top: 40px;
+}
+
+span {
+  display: inline;
+}
+
+div {
+  display: block;
+}
+
+table {
+  display: inline-table;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
