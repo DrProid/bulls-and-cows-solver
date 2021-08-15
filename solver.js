@@ -99,23 +99,23 @@ class Game {
       avg: {
         avg: -1,
         min: -1,
-        max: -1
+        // max: -1
       },
-      max: {
-        avg: -1,
-        min: -1,
-        max: -1
-      },
+      // max: {
+      //   avg: -1,
+      //   min: -1,
+      //   max: -1
+      // },
       min: {
         avg: -1,
         min: -1,
-        max: -1
+        // max: -1
       }
     };
 
     guesses.min.min = -1;
     guesses.avg.avg = -1;
-    guesses.max.max = -1;
+    // guesses.max.max = -1;
     // let bestIndex = {least:-1,most:-1,average:-1};
     // let countPossible = 0;
     for (let i = 0; i < this.allPossibilities.length; i++) {//check all possible permutations as guesses
@@ -124,7 +124,7 @@ class Game {
         let leastEliminated = -1;
         let averageEliminated = -1;
         let averageEntries = 0;
-        let mostEliminated = -1;
+        // let mostEliminated = -1;
         for (let j = 0; j < this.allPossibilities.length; j++) {//check all possible permutations as answers
           if (this.allPossibilities[i].possible == true) {
             //count elimination potential
@@ -134,11 +134,11 @@ class Game {
               //fresh entry
               leastEliminated = eliminated;
               averageEliminated = eliminated;
-              mostEliminated = eliminated;
+              // mostEliminated = eliminated;
               averageEntries = 1;
             } else {
               leastEliminated = Math.min(leastEliminated, eliminated);
-              mostEliminated = Math.max(mostEliminated, eliminated);
+              // mostEliminated = Math.max(mostEliminated, eliminated);
               averageEliminated = (averageEliminated * averageEntries) + eliminated;
               averageEntries++;
               averageEliminated /= averageEntries;
@@ -148,37 +148,37 @@ class Game {
         if (guesses.min.min == -1) {
           //fresh entry
           guesses.min.min = leastEliminated;
-          guesses.min.max = mostEliminated;
+          // guesses.min.max = mostEliminated;
           guesses.min.avg = averageEliminated;
 
           guesses.avg.min = leastEliminated;
-          guesses.avg.max = mostEliminated;
+          // guesses.avg.max = mostEliminated;
           guesses.avg.avg = averageEliminated;
 
-          guesses.max.min = leastEliminated;
-          guesses.max.max = mostEliminated;
-          guesses.max.avg = averageEliminated;
+          // guesses.max.min = leastEliminated;
+          // guesses.max.max = mostEliminated;
+          // guesses.max.avg = averageEliminated;
 
           guesses.minPermutation = this.allPossibilities[i].permutation;
-          guesses.maxPermutation = this.allPossibilities[i].permutation;
+          // guesses.maxPermutation = this.allPossibilities[i].permutation;
           guesses.avgPermutation = this.allPossibilities[i].permutation;
         } else {
           if (leastEliminated > guesses.min.min) {
             guesses.min.min = leastEliminated;
-            guesses.min.max = mostEliminated;
+            // guesses.min.max = mostEliminated;
             guesses.min.avg = averageEliminated;
             guesses.minPermutation = this.allPossibilities[i].permutation;
           }
-          if (mostEliminated > guesses.max.max) {
-            guesses.max.min = leastEliminated;
-            guesses.max.max = mostEliminated;
-            guesses.max.avg = averageEliminated;
-            guesses.maxPermutation = this.allPossibilities[i].permutation;
-          }
+          // if (mostEliminated > guesses.max.max) {
+          //   guesses.max.min = leastEliminated;
+          //   guesses.max.max = mostEliminated;
+          //   guesses.max.avg = averageEliminated;
+          //   guesses.maxPermutation = this.allPossibilities[i].permutation;
+          // }
           if (averageEliminated > guesses.avg.avg) {
             // console.log(averageEliminated, guesses.avg.avg);
             guesses.avg.min = leastEliminated;
-            guesses.avg.max = mostEliminated;
+            // guesses.avg.max = mostEliminated;
             guesses.avg.avg = averageEliminated;
             guesses.avgPermutation = this.allPossibilities[i].permutation;
           }
@@ -271,10 +271,10 @@ function addGuessField(slots) {
   let textSpan = document.createElement('table');
   div.append(textSpan);
   let guessText = [];
-  guessText[0] = "MIN: " + guesses.minPermutation + "[min:" + guesses.min.min + ", avg:" + Math.round(guesses.min.avg) + ", max" + guesses.min.max + "]";
-  guessText[1] = "AVG: " + guesses.avgPermutation + "[min:" + guesses.avg.min + ", avg:" + Math.round(guesses.avg.avg) + ", max" + guesses.avg.max + "]";
-  guessText[2] = "MAX: " + guesses.maxPermutation + "[min:" + guesses.max.min + ", avg:" + Math.round(guesses.max.avg) + ", max" + guesses.max.max + "]";
-  for (let i = 0; i < 3; i++) {
+  guessText[0] = "MIN: " + guesses.minPermutation + "[min:" + guesses.min.min + ", avg:" + Math.round(guesses.min.avg) + "]";
+  guessText[1] = "AVG: " + guesses.avgPermutation + "[min:" + guesses.avg.min + ", avg:" + Math.round(guesses.avg.avg) + "]";
+  // guessText[2] = "MAX: " + guesses.maxPermutation + "[min:" + guesses.max.min + ", avg:" + Math.round(guesses.max.avg) + ", max" + guesses.max.max + "]";
+  for (let i = 0; i < 2; i++) {
     let guessTextBox = document.createElement('div');
     guessTextBox.id = 'generated-guess' + idNumber + '-' + i;
     guessTextBox.innerHTML = guessText[i];
