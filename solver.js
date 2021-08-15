@@ -11,11 +11,13 @@ class Game {
     this.slots = slots;
     this.refresh();
   }
-
+  
   refresh() {
     this.allPossibilities = [];
-    this.allPossible(this.choices, this.slots);//recursively fill allPossibilities
-    this.answer = this.generateAnswer();
+    if(this.slots.length > 0){
+      this.allPossible(this.choices, this.slots);//recursively fill allPossibilities
+      this.answer = this.generateAnswer();
+    }
   }
 
   allPossible(choices, slots) {//recursively generate all permutations
@@ -119,7 +121,10 @@ class Game {
     // let bestIndex = {least:-1,most:-1,average:-1};
     // let countPossible = 0;
     for (let i = 0; i < this.allPossibilities.length; i++) {//check all possible permutations as guesses
-      if (this.allPossibilities[i].possible == true) {
+      /* if (this.allPossibilities[i].possible == true) {
+        I commented out the conditional above because it makes sense to check permutations that we know are wrong
+        because they might remove more possible answers
+        */
         // countPossible++;
         let leastEliminated = -1;
         let averageEliminated = -1;
@@ -183,7 +188,7 @@ class Game {
             guesses.avgPermutation = this.allPossibilities[i].permutation;
           }
         }
-      }
+      // }
     }
     return guesses;
   }
@@ -255,7 +260,7 @@ function addGuessField(slots) {
       if (p + c <= slots.length) {
         let option = document.createElement('option');
         option.value = c + "C" + p + "P";
-        option.innerHTML = "[" + '!'.repeat(p) + '?'.repeat(c) + ' '.repeat(slots.lenght - c - p) + "]";
+        option.innerHTML = "[" + '!'.repeat(p) + '?'.repeat(c) + ' '.repeat(slots.length - c - p) + "]";
         resultSelect.append(option);
 
       }
