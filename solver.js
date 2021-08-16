@@ -224,7 +224,7 @@ function startGame() {
 
 function submitGuess(event) {
   //disable further submits from this button
-  event.originalTarget.disabled = true;
+  event.target.disabled = true;
   let result;
   let slots = []
   {
